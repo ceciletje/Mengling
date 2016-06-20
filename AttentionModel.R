@@ -85,9 +85,9 @@ levels(attention$Trial)
 #[67] "67" "68" "69" "70" "71" "72" "73" "74" "75" "76" "77" "78" "79" "80" "81" "82" "83" "84" "85" "86" "87" "88"
 #[89] "89" "90" "91" "92" "93" "94" "95" "96"
 
-## add line here to save the attention.rda file
+## CDC: add line here to save the attention.rda file
 
-## add line here to load the attention.rda file
+## CDC: add line here to load the attention.rda file
 
 
 require(survival)
@@ -407,7 +407,7 @@ coef(dat.surv3)
 #abline(item.effect,col=2, lty=3)
 
 
-
+## (CDC)
 ## Code to extract the modelled score for each participant (to be
 ## used as predictor in the other analyses)
 
