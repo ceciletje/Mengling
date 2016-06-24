@@ -86,8 +86,10 @@ levels(attention$Trial)
 #[89] "89" "90" "91" "92" "93" "94" "95" "96"
 
 ## CDC: add line here to save the attention.rda file
+### Linda:
 save(attention, file='C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
 ## CDC: add line here to load the attention.rda file
+### Linda:
 load('C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
 
 require(survival)
@@ -147,6 +149,23 @@ abline(item.effect,col=2, lty=3)
 
 summary(item.effect) ## CDC: check here whether there was a
                      ## significant effect of item, and report it.
+### Linda report:
+#Call:
+#  lm(formula = resp ~ items)
+
+#Residuals:
+#  Min        1Q       Median       3Q       Max 
+#-0.034885 -0.009388  0.000884  0.007721  0.032537 
+
+#Coefficients:
+#             Estimate   Std. Error t value  Pr(>|t|)
+#(Intercept)  2.174e-03  2.820e-03   0.771    0.443
+#items       -4.482e-05  5.048e-05  -0.888    0.377
+
+#Residual standard error: 0.0137 on 94 degrees of freedom
+#Multiple R-squared:  0.008317,	Adjusted R-squared:  -0.002233 
+#F-statistic: 0.7884 on 1 and 94 DF,  p-value: 0.3769
+# There is no significant effect of Items.
 
 dat.surv1 <- coxph(yy ~ WarningType+ FlankerType + TargetType + Group + frailty.gaussian(Trial, sparse=F),
                    attention)
@@ -419,10 +438,19 @@ pred.dat.surv <- predict(dat.surv)
 ## has the same estimates of items.
 
 pa <- dat$Subject[!is.na(dat$SlideTarget.RT)]
+### Linda: 
+### there is Warning message:
+### In is.na(dat$SlideTarget.RT) :
+### is.na() applied to non-(list or vector) of type 'NULL'
+       
 mean.score.dat.surv <- c(by(pred.dat.surv, pa, mean))
 ## median.score.dat.surv <- c(by(pred.dat.surv, pa, median))
+### Linda:
+### there are errors of running the two codes above:
+### Error in tapply(seq_len(15552L), list(pa = integer(0)), function (x)  : they must have same length.
+### So the two codes can not be runned.
 
-
+### Linda: so, the following steps have not been done yet.
 ## Adding participant characteristics to the dataframe
 library(reshape2)
 tmp <- as.data.frame(mean.score.dat.surv)
