@@ -1,6 +1,9 @@
 getwd()
 #[1] "C:/Users/Linda/Desktop/Rdocument"
 
+## for Cecile
+setwd("~/Dropbox/cecile/Work/SupervisionETC/Linda_Mengling_Xu/Experiment1_RT/src/")
+
 ############### Native Attention data ##############
 dat1 <- read.csv('C://Users//Linda//Desktop//Rdocument//data//25nativeChineseAttention.csv', header=T, sep=',')
 str(dat1)
@@ -89,6 +92,8 @@ levels(attention$Trial)
 save(attention, file='C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
 ## CDC: add line here to load the attention.rda file
 load('C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
+
+load("../data/AttentionData.rda")
 
 require(survival)
 
@@ -418,7 +423,7 @@ pred.dat.surv <- predict(dat.surv)
 ## each items. It is safe to average them, because each individual
 ## has the same estimates of items.
 
-pa <- dat$Subject[!is.na(dat$SlideTarget.RT)]
+pa <- attention$Subject[!is.na(attention$SlideTarget.RT)]
 mean.score.dat.surv <- c(by(pred.dat.surv, pa, mean))
 ## median.score.dat.surv <- c(by(pred.dat.surv, pa, median))
 
@@ -439,7 +444,7 @@ str(scores)
 ## CDC: you will need to check that participants are identified in
 ## exactly the same way in the scores dataframe and in the dataframe
 ## you want to merge them into.  Then use the following commands to
-## perform the merge:
+## perform the merge (where TargetDataFrame is the data to which you want to add the ANT scores, and NewDataFrame is the result of the merge, giving it temporarily a new name to check everything is ok before over-writing the original file):
 
 NewDataFrame <- merge(scores, TargetDataFrame,
                    by = "Subject")
