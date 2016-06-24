@@ -86,7 +86,7 @@ levels(attention$Trial)
 #[89] "89" "90" "91" "92" "93" "94" "95" "96"
 
 ## CDC: add line here to save the attention.rda file
-
+save(attention, file='C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
 ## CDC: add line here to load the attention.rda file
 
 
@@ -160,7 +160,7 @@ anova(dat.surv, dat.surv1)
 #1 -130966
 #2 -130953 25.461 0.99779 4.492e-07 ***
 #  ---
-#  Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#  Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 ##### So, model 2 is better than model 1, Group has a siginificant effect #########
 
 ## coef(dat.surv1)
@@ -187,7 +187,7 @@ anova(dat.surv2, dat.surv1)
 #1 -130948
 #2 -130953 9.8531 0.99639  0.001684 **
 #  ---
-#  Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#  Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 ##### So, model 2 is better than model 1, TargetDirection(i.e. Left or Right) has no significant effect #######
 
 dat.surv3 <- coxph(yy ~ WarningType + FlankerType + TargetType + Group*TargetDirection + frailty.gaussian(Trial, sparse=F), attention)
@@ -201,7 +201,7 @@ anova(dat.surv1, dat.surv3)
 #1 -130953
 #2 -130945 16.556 1.9918 0.0002512 ***
 #  ---
-#  Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#  Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 ##### So, model 2 is better than model 1, #####
 ##### there is an interaction significant effect between Group (i.e. native and L2) and TargetDirection (i.e. Left or Right) #####
 
