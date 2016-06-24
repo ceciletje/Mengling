@@ -2,7 +2,7 @@ getwd()
 #[1] "C:/Users/Linda/Desktop/Rdocument"
 
 ############### Native Attention data ##############
-dat1 <- read.csv('C://Users//Linda//Desktop//Rdocument//csv//25nativeChineseAttention.csv', header=T, sep=',')
+dat1 <- read.csv('C://Users//Linda//Desktop//Rdocument//data//25nativeChineseAttention.csv', header=T, sep=',')
 str(dat1)
 #'data.frame':	7200 obs. of  11 variables:
 #$ Subject        : int  1 1 1 1 1 1 1 1 1 1 ...
@@ -21,10 +21,10 @@ levels(dat1$Subject)
 [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22"
 [23] "23" "24" "25"
 
-levels(dat$Subject) <- c('NS1','NS2','NS3','NS4','NS5','NS6','NS7','NS8','NS9','NS10','NS11','NS12','NS13','NS14','NS15','NS16','NS17','NS18','NS19','NS20','NS21','NS22','NS23','NS24','NS25')
+levels(dat1$Subject) <- c('NS1','NS2','NS3','NS4','NS5','NS6','NS7','NS8','NS9','NS10','NS11','NS12','NS13','NS14','NS15','NS16','NS17','NS18','NS19','NS20','NS21','NS22','NS23','NS24','NS25')
 
 #################### L2 learners data ########################
-dat2 <- read.csv('C://Users//Linda//Desktop//Rdocument//csv//29L2Attention.csv', header=T, sep=',')
+dat2 <- read.csv('C://Users//Linda//Desktop//Rdocument//data//29L2Attention.csv', header=T, sep=',')
 str(dat2)
 #'data.frame':	8352 obs. of  11 variables:
 #$ Subject        : int  1 1 1 1 1 1 1 1 1 1 ...
