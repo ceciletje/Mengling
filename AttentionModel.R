@@ -43,7 +43,7 @@ dat2$Subject <- as.factor(dat2$Subject)
 #[1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22"
 #[23] "23" "24" "25" "26" "27" "28" "29"
 levels(dat2$Subject) <- c('L2.1','L2.2','L2.3','L2.4','L2.5','L2.6','L2.7','L2.8','L2.9','L2.10','L2.11','L2.12','L2.13','L2.14', 'L2.15','L2.16','L2.17','L2.18','L2.19','L2.20','L2.21','L2.22','L2.23','L2.24','L2.25','L2.26','L2.27','L2.28','L2.29')
-
+## bind two groups' data together ##
 total <- rbind(dat1, dat2)
 attention <- total
 dim(attention)
@@ -88,7 +88,7 @@ levels(attention$Trial)
 ## CDC: add line here to save the attention.rda file
 save(attention, file='C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
 ## CDC: add line here to load the attention.rda file
-
+load('C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
 
 require(survival)
 
