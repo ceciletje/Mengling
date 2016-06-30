@@ -2,8 +2,7 @@ getwd()
 #[1] "C:/Users/Linda/Documents"
 setwd('C:/Users/Linda/Desktop/Rdocument')
 
-
-#### 1. Bind two groups¡¯ proficiency data ####
+#### 1. Bind two groupsÂ¡Â¯ proficiency data ####
 ### Native Chinese speakers' proficiency data ###
 proficiency1 <- read.csv('C://Users//Linda//Desktop//Rdocument//data//25nativeChineseProficiency.csv', header=T, sep=',')
 str(proficiency1)
@@ -55,8 +54,7 @@ str(proficiency)
 #$ Percentile.Equivalent.Self.Evaluation.Score: num  5 5 5 5 5 5 5 5 5 5 ...
 #$ Age.Chinese                                : int  0 0 0 0 0 0 0 0 0 0 ...
 
-
-#### 2. Bind two groups¡¯ memroy data ####
+#### 2. Bind two groupsÂ¡Â¯ memroy data ####
 ### Native Chinese speakers'memory data ###
 memory1 <- read.csv('C://Users//Linda//Desktop//Rdocument//data//25nativeChineseMemory.csv', header=T, sep=',')
 str(memory1)
@@ -101,7 +99,6 @@ str(memory)
 #$ Handness                    : Factor w/ 2 levels "mixed","right": 2 2 2 2 1 2 2 2 2 2 ...
 #$ Stand.Score                 : int  121 132 139 136 143 136 139 121 139 129 ...
 #$ Percentile.Equivalent.Memory: num  92 98 99.5 99.2 99.8 99.2 99.5 92 99.5 97 ...
-
 
 #### 3. Bind two groups' self-paced data ####
 ### Native Chinese speakers' self-paced data ###
@@ -239,7 +236,6 @@ str(selfpaced)
 #$ NOT                : Factor w/ 1 level "buyao.bmp": 1 1 1 1 1 1 1 1 1 1 ...
 #$ NOT.RT             : int  0 0 0 0 0 0 0 0 0 0 ...
 
-
 ####4.Merge Proficiency, Memory, Self-paced Data ####
 proficiency <- proficiency[ ,-2]
 proficiency$Subject <- as.factor(proficiency$Subject)
@@ -350,7 +346,7 @@ load('C://Users//Linda//Desktop//Rdocument//src//Exp1dat.rda')
 
 load('C://Users//Linda//Desktop//Rdocument//src//AttentionScores.rda')
 
-## merge all the data (i.e. AttentionScores, Proficiency, Memory and Selfpaced) together ##
+##5. Merge all the data (i.e. AttentionScores, Proficiency, Memory and Selfpaced) together ##
 scores <- scores[ ,-2]
 scores$Subject <- as.factor(scores$Subject)
 data <- merge(scores, dat, all=TRUE, by='Subject')
@@ -401,6 +397,7 @@ str(data)
 #$ Stand.Score                                : int  111 111 111 111 111 111 111 111 111 111 ...
 #$ Percentile.Equivalent.Memory               : num  77 77 77 77 77 77 77 77 77 77 ...
 save(data, file='C://Users//Linda//Desktop//Rdocument//src//data.rda')
+
 load('C://Users//Linda//Desktop//Rdocument//src//data.rda')
 
 names(data)[2] <- 'Attention'
@@ -448,9 +445,11 @@ data$Spillover3.LogRT <- log(data$Spillover3.RT)
 
 ## calculate average reading time for filler items (reading time for whole test sentence) per participant, (to use as baseline reading time) ##
 ## Generating baseline RT for each participant ##
-summation.variable <- data$Matrix.Subject.RT + data$Matrix.Verb.RT + data$Embedded.Subject.RT + data$Embedded.Verb.RT + data$NOT.RT + data$Pronoun.RT + data$Spillover1.RT + data$Spillover2.RT + data$Spillover3.RT
+summation.variable <- data$Matrix.Subject.RT + data$Matrix.Verb.RT + data$Embedded.Subject.RT + data$Embedded.Verb.RT 
+                      + data$NOT.RT + data$Pronoun.RT + data$Spillover1.RT + data$Spillover2.RT + data$Spillover3.RT
 data$TestSentence.RT <- summation.variable
-baselineRT <- aggregate(data [data$Context == 'Filler', 'TestSentence.RT'], by=list(data[data$Context == 'Filler',]$Subject),mean)
+baselineRT <- aggregate(data [data$Context == 'Filler', 'TestSentence.RT'], 
+              by=list(data[data$Context == 'Filler',]$Subject),mean)
 names(baselineRT)[1] <- 'Subject'
 names(baselineRT)[2] <- 'Reading.baseline'
 
@@ -458,7 +457,7 @@ all <- merge(data, baselineRT, all=TRUE, by='Subject')
 dim(all)
 #[1] 9720   52
 
-## Create a datsub of Exp1 critical data excluding filler items ##
+##6. Create a datsub of Exp1 critical data excluding filler items ##
 subdat <- droplevels(all[all$Context != 'Filler',])
 str(subdat)
 #'data.frame':	4860 obs. of  52 variables:
