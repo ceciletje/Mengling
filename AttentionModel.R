@@ -102,55 +102,25 @@ yy <- Surv(attention$SlideTarget.RT, event=attention$SlideTarget.ACC==1)
 
 dat.surv <- coxph(yy ~ WarningType + FlankerType + TargetType + frailty.gaussian(Trial, sparse=F),attention)
 summary(dat.surv)
-#Call:
-#  coxph(formula = yy ~ WarningType + FlankerType + TargetType +
-#          frailty.gaussian(Trial, sparse = F), data = attention)
 
-#n= 15552, number of events= 15219
-
-#                            coef   se(coef)  se2     Chisq   DF     p
-#WarningTypecenter          0.17371 0.02300  0.02298  57.04  1.00 4.3e-14
-#WarningTypedouble          0.30458 0.02300  0.02298 175.32  1.00 0.0e+00
-#WarningTypedown            0.40096 0.02965  0.02962 182.89  1.00 0.0e+00
-#WarningTypeup              0.29862 0.02966  0.02963 101.36  1.00 0.0e+00
-#FlankerTypeincongruent    -0.36956 0.01996  0.01995 342.64  1.00 0.0e+00
-#FlankerTypeneutral         0.11239 0.01979  0.01977  32.25  1.00 1.4e-08
-#TargetTypeup               0.06541 0.01876  0.01874  12.16  1.00 4.9e-04
-#frailty.gaussian(Trial, s                            16.47 16.22 4.4e-01
-
-#                         exp(coef) exp(-coef) lower .95 upper .95
-#WarningTypecenter         1.1897     0.8405    1.1373    1.2446
-#WarningTypedouble         1.3561     0.7374    1.2963    1.4186
-#WarningTypedown           1.4933     0.6697    1.4090    1.5826
-#WarningTypeup             1.3480     0.7418    1.2719    1.4287
-#FlankerTypeincongruent    0.6910     1.4471    0.6645    0.7186
-#FlankerTypeneutral        1.1190     0.8937    1.0764    1.1632
-#TargetTypeup              1.0676     0.9367    1.0291    1.1076
-
-#Iterations: 10 outer, 21 Newton-Raphson
-#Variance of random effect= 0.001302083
-#Degrees of freedom for terms=  4.0  2.0  1.0 16.2
-#Concordance= 0.614  (se = 0.003 )
-#Likelihood ratio test= 1139  on 23.21 df,   p=0
-
-coef(dat.surv) ## CDC: this command is just for you to see which terms
+#coef(dat.surv) ## CDC: this command is just for you to see which terms
                ## you need to extract for "resp" below (i.e. starting
                ## from the first "Gauss" term
 
 ## plot for item random effect:
 # for model: dat.surv <- coxph(yy ~ WarningType + FlankerType + TargetType + frailty.gaussian(Trial, sparse=F),attention)
-items <- 1:96
-resp <- coef(dat.surv)[-c(1:7)] ## CDC: you will need to amend this if
+#items <- 1:96
+#resp <- coef(dat.surv)[-c(1:7)] ## CDC: you will need to amend this if
                                 ## a different number of predictors is
                                 ## used
 
-item.effect <- lm(resp ~ items)
-plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
-axis(2)
-axis(1, at=1:96)
-abline(item.effect,col=2, lty=3)
+#item.effect <- lm(resp ~ items)
+#plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
+#axis(2)
+#axis(1, at=1:96)
+#abline(item.effect,col=2, lty=3)
 
-summary(item.effect) ## CDC: check here whether there was a
+#summary(item.effect) ## CDC: check here whether there was a
                      ## significant effect of item, and report it.
 
 dat.surv1 <- coxph(yy ~ WarningType+ FlankerType + TargetType + Group + frailty.gaussian(Trial, sparse=F),
@@ -172,14 +142,14 @@ anova(dat.surv, dat.surv1)
 
 ## plot for item random effect:
 # for model: dat.surv1 <- coxph(yy ~ WarningType + FlankerType + TargetType + Group + frailty.gaussian(Trial, sparse=F),attention)
-items <- 1:96
-resp <- coef(dat.surv1)[-c(1:8)]
-item.effect <- lm(resp ~ items)
-plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
-axis(2)
-axis(1, at=1:96)
-abline(item.effect,col=2, lty=3)
-dev.off()
+#items <- 1:96
+#resp <- coef(dat.surv1)[-c(1:8)]
+#item.effect <- lm(resp ~ items)
+#plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
+#axis(2)
+#axis(1, at=1:96)
+#abline(item.effect,col=2, lty=3)
+#dev.off()
 
 dat.surv2 <- coxph(yy ~ WarningType+ FlankerType + TargetType + Group  + TargetDirection + frailty.gaussian(Trial, sparse=F), attention)
 summary(dat.surv2)
@@ -403,20 +373,37 @@ coef(dat.surv3)
 
 ## plot for item random effect:
 # for model: dat.surv3 <- coxph(yy ~ WarningType + FlankerType + TargetType + Group*TargetDirection + frailty.gaussian(Trial, sparse=F),attention)
-#items <- 1:97
-#resp <- coef(dat.surv3)[-c(1:9)]
-#item.effect <- lm(resp ~ items)
-#plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
-#axis(2)
-#axis(1, at=1:97)
-#abline(item.effect,col=2, lty=3)
+items <- 1:97
+resp <- coef(dat.surv3)[-c(1:9)]
+item.effect <- lm(resp ~ items)
+plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
+axis(2)
+axis(1, at=1:97)
+abline(item.effect,col=2, lty=3)
+summary(item.effect)
+#Call:
+#  lm(formula = resp ~ items)
+
+#Residuals:
+#  Min        1Q    Median        3Q       Max 
+#-0.033578 -0.010016 -0.000059  0.008082  0.083380 
+
+#Coefficients:
+#             Estimate  Std. Error  t value Pr(>|t|)
+#(Intercept) 3.545e-04  3.316e-03   0.107    0.915
+#items       1.060e-05  5.876e-05   0.180    0.857
+
+#Residual standard error: 0.0162 on 95 degrees of freedom
+#Multiple R-squared:  0.0003424,	Adjusted R-squared:  -0.01018 
+#F-statistic: 0.03254 on 1 and 95 DF,  p-value: 0.8572
+#No significant effect of Items.
 
 
 ## (CDC)
 ## Code to extract the modelled score for each participant (to be
 ## used as predictor in the other analyses)
 
-pred.dat.surv <- predict(dat.surv)
+pred.dat.surv3 <- predict(dat.surv3)
 ## fitted score for each data point in terms of linear
 ## predictor. Note that in one individual there are several scores
 ## because within each individual there are several estimates for
@@ -424,32 +411,96 @@ pred.dat.surv <- predict(dat.surv)
 ## has the same estimates of items.
 
 pa <- attention$Subject[!is.na(attention$SlideTarget.RT)]
-mean.score.dat.surv <- c(by(pred.dat.surv, pa, mean))
-## median.score.dat.surv <- c(by(pred.dat.surv, pa, median))
-
+mean.score.dat.surv3 <- c(by(pred.dat.surv3, pa, mean))
+## median.score.dat.surv3 <- c(by(pred.dat.surv3, pa, median))
 
 ## Adding participant characteristics to the dataframe
 library(reshape2)
-tmp <- as.data.frame(mean.score.dat.surv)
+tmp <- as.data.frame(mean.score.dat.surv3)
 tmp$Factor = rownames(tmp)
 melt(tmp)
+#Using Factor as id variables
+#   Factor          variable       value
+#1     NS1 mean.score.dat.surv3 -0.04439709
+#2     NS2 mean.score.dat.surv3 -0.04439709
+#3     NS3 mean.score.dat.surv3 -0.04439709
+#4     NS4 mean.score.dat.surv3 -0.04439709
+#5     NS5 mean.score.dat.surv3 -0.04439709
+#6     NS6 mean.score.dat.surv3 -0.04439709
+#7     NS7 mean.score.dat.surv3 -0.04439709
+#8     NS8 mean.score.dat.surv3 -0.04439709
+#9     NS9 mean.score.dat.surv3 -0.04439709
+#10   NS10 mean.score.dat.surv3 -0.04439709
+#11   NS11 mean.score.dat.surv3 -0.04439709
+#12   NS12 mean.score.dat.surv3 -0.04439709
+#13   NS13 mean.score.dat.surv3 -0.04439709
+#14   NS14 mean.score.dat.surv3 -0.04439709
+#15   NS15 mean.score.dat.surv3 -0.04439709
+#16   NS16 mean.score.dat.surv3 -0.04439709
+#17   NS17 mean.score.dat.surv3 -0.04439709
+#18   NS18 mean.score.dat.surv3 -0.04439709
+#19   NS19 mean.score.dat.surv3 -0.04439709
+#20   NS20 mean.score.dat.surv3 -0.04439709
+#21   NS21 mean.score.dat.surv3 -0.04439709
+#22   NS22 mean.score.dat.surv3 -0.04439709
+#23   NS23 mean.score.dat.surv3 -0.04439709
+#24   NS24 mean.score.dat.surv3 -0.04439709
+#25   NS25 mean.score.dat.surv3 -0.04439709
+#26   L2.1 mean.score.dat.surv3  0.03827335
+#27   L2.2 mean.score.dat.surv3  0.03827335
+#28   L2.3 mean.score.dat.surv3  0.03827335
+#29   L2.4 mean.score.dat.surv3  0.03827335
+#30   L2.5 mean.score.dat.surv3  0.03827335
+#31   L2.6 mean.score.dat.surv3  0.03827335
+#32   L2.7 mean.score.dat.surv3  0.03827335
+#33   L2.8 mean.score.dat.surv3  0.03827335
+#34   L2.9 mean.score.dat.surv3  0.03827335
+#35  L2.10 mean.score.dat.surv3  0.03827335
+#36  L2.11 mean.score.dat.surv3  0.03827335
+#37  L2.12 mean.score.dat.surv3  0.03827335
+#38  L2.13 mean.score.dat.surv3  0.03827335
+#39  L2.14 mean.score.dat.surv3  0.03827335
+#40  L2.15 mean.score.dat.surv3  0.03827335
+#41  L2.16 mean.score.dat.surv3  0.03827335
+#42  L2.17 mean.score.dat.surv3  0.03827335
+#43  L2.18 mean.score.dat.surv3  0.03827335
+#44  L2.19 mean.score.dat.surv3  0.03827335
+#45  L2.20 mean.score.dat.surv3  0.03827335
+#46  L2.21 mean.score.dat.surv3  0.03827335
+#47  L2.22 mean.score.dat.surv3  0.03827335
+#48  L2.23 mean.score.dat.surv3  0.03827335
+#49  L2.24 mean.score.dat.surv3  0.03827335
+#50  L2.25 mean.score.dat.surv3  0.03827335
+#51  L2.26 mean.score.dat.surv3  0.03827335
+#52  L2.27 mean.score.dat.surv3  0.03827335
+#53  L2.28 mean.score.dat.surv3  0.03827335
+#54  L2.29 mean.score.dat.surv3  0.03827335
 str(tmp)
+#'data.frame':	54 obs. of  2 variables:
+#$ mean.score.dat.surv3: num  -0.0444 -0.0444 -0.0444 -0.0444 -0.0444 ...
+#$ Factor              : chr  "NS1" "NS2" "NS3" "NS4" ...
 tmp$Subject <- as.factor(tmp$Factor)
 tmp1 <- tmp[!duplicated(tmp$Subject), ]
 str(tmp1)
-
+#'data.frame':	54 obs. of  3 variables:
+#$ mean.score.dat.surv3: num  -0.0444 -0.0444 -0.0444 -0.0444 -0.0444 ...
+#$ Factor              : chr  "NS1" "NS2" "NS3" "NS4" ...
+#$ Subject             : Factor w/ 54 levels "L2.1","L2.10",..: 30 41 48 49 50 51 52 53 54 31 ...
 scores <- tmp1
-
 str(scores)
+save(scores, file='C://Users//Linda//Desktop//Rdocument//src//AttentionScores.rda')
+
 ## CDC: you will need to check that participants are identified in
 ## exactly the same way in the scores dataframe and in the dataframe
 ## you want to merge them into.  Then use the following commands to
 ## perform the merge (where TargetDataFrame is the data to which you want to add the ANT scores, and NewDataFrame is the result of the merge, giving it temporarily a new name to check everything is ok before over-writing the original file):
 
-NewDataFrame <- merge(scores, TargetDataFrame,
-                   by = "Subject")
+load('C://Users//Linda//Desktop//Rdocument//src//AttentionScores.rda')
+load('C://Users//Linda//Desktop//Rdocument//src//Exp1dat.rda')
 
-nrow(NewDataFrame) == nrow(TargetDataFrame)
+NewDataFrame <- merge(scores, dat, by = "Subject")
+
+nrow(NewDataFrame) == nrow(dat)
+#[1] TRUE
 ## to check you have the same number of rows (otherwise something's
 ## gone wrong)
-
