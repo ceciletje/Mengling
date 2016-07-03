@@ -62,7 +62,7 @@ str(subdat)
 data <- subdat
 
 ## DV: Antecedent (i.e. local or long-distance choice), 
-## which corresponds to ¡®local or long-distance¡¯ rather than ¡®matching the context or not¡¯
+## which corresponds to Â¡Â®local or long-distanceÂ¡Â¯ rather than Â¡Â®matching the context or notÂ¡Â¯
 
 data$Antecedent <- ifelse(data$Verb.Type == "v3"
                           & data$Context == "Local"
@@ -158,7 +158,7 @@ anova(data.glmer0a, data.glmer0b)
 #data.glmer0a  2 6672.7 6685.7 -3334.4   6668.7                             
 #data.glmer0b  3 4657.2 4676.7 -2325.6   4651.2 2017.5      1  < 2.2e-16 ***
 #  ---
-#  Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#  Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 
 data.glmer0 <- glmer( Antecedent ~ (1|Subject) + (1|CSTSwhole) + Condition, data,  family='binomial')
 summary(data.glmer0)
@@ -172,7 +172,7 @@ anova(data.glmer0,data.glmer0b)
 #data.glmer0b  3 4657.2 4676.7 -2325.6   4651.2                             
 #data.glmer0   8 4498.7 4550.6 -2241.3   4482.7 168.58      5  < 2.2e-16 ***
 #  ---
-#Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 #So, data.glmer0 is better, that is, the dummy-coded factor (Verb.Type:Context) has a main significant effect.#
 
 data.glmer1 <- glmer( Antecedent ~ (1|Subject) + (1|CSTSwhole) + Condition + Group, data,  family='binomial')
@@ -187,9 +187,48 @@ anova(data.glmer0,data.glmer1)
 #data.glmer0  8 4498.7 4550.6 -2241.3   4482.7                           
 #data.glmer1  9 4490.1 4548.5 -2236.1   4472.1 10.54      1   0.001168 **
 #  ---
-#Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 #So, data.glmer1 is better, that is, Group also has a main significant effect.##
 ## Native Chinese Group is significant different from L2 learners. ##
+
+#Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+# Family: binomial  ( logit )
+#Formula: Antecedent ~ (1 | Subject) + (1 | CSTSwhole) + Condition + Group
+#   Data: data
+
+#     AIC      BIC   logLik deviance df.resid 
+#  4490.1   4548.5  -2236.1   4472.1     4851 
+
+#Scaled residuals: 
+#    Min      1Q  Median      3Q     Max 
+#-4.2308 -0.4339 -0.0999  0.5114  9.4048 
+
+#Random effects:
+# Groups    Name        Variance Std.Dev.
+# CSTSwhole (Intercept) 0.4331   0.6581  
+# Subject   (Intercept) 0.3093   0.5561  
+#Number of obs: 4860, groups:  CSTSwhole, 90; Subject, 54
+
+#Fixed effects:
+#                      Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)            -2.1914     0.2300  -9.529  < 2e-16 ***
+#ConditionLong.dist.v3   3.4869     0.2814  12.391  < 2e-16 ***
+#ConditionLocal.v1      -0.9389     0.2991  -3.139 0.001693 ** 
+#ConditionLong.dist.v1   2.0330     0.2740   7.420 1.17e-13 ***
+#ConditionLocal.v2       2.2583     0.2752   8.206 2.30e-16 ***
+#ConditionLong.dist.v2   4.0003     0.2873  13.926  < 2e-16 ***
+#Group2                  0.5806     0.1701   3.413 0.000643 ***
+---
+#Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+
+#Correlation of Fixed Effects:
+#            (Intr) CnL..3 CndL.1 CnL..1 CndL.2 CnL..2
+#CndtnLng..3 -0.637                                   
+#CndtnLcl.v1 -0.581  0.475                            
+#CndtnLng..1 -0.645  0.528  0.488                     
+#CndtnLcl.v2 -0.645  0.528  0.486  0.537              
+#CndtnLng..2 -0.627  0.513  0.465  0.518  0.518       
+#Group2      -0.356  0.021 -0.002  0.010  0.012  0.025
 
 comparisons <- glht(data.glmer1, linfct=mcp(Condition="Tukey"))
 summary(comparisons,test=adjusted(type='bonferroni'))
@@ -233,7 +272,7 @@ summary(NCdat.glmer1)
 #  ConditionLocal.v2       3.5104     0.5206   6.742 1.56e-11 ***
 #  ConditionLong.dist.v2   7.8189     0.8284   9.439  < 2e-16 ***
 #  ---
-#  Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#  Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 
 #Correlation of Fixed Effects:
 #  (Intr) CnL..3 CndL.1 CnL..1 CndL.2
@@ -277,7 +316,7 @@ anova(L2dat.glmer2, L2dat.glmer1)
 #L2dat.glmer1  8 2784.1 2831.1 -1384.1   2768.1                             
 #L2dat.glmer2 11 2766.1 2830.6 -1372.0   2744.1  24.068      3  2.417e-05 ***
 #  ---
-#  Signif. codes:  0 ¡®***¡¯ 0.001 ¡®**¡¯ 0.01 ¡®*¡¯ 0.05 ¡®.¡¯ 0.1 ¡® ¡¯ 1
+#  Signif. codes:  0 Â¡Â®***Â¡Â¯ 0.001 Â¡Â®**Â¡Â¯ 0.01 Â¡Â®*Â¡Â¯ 0.05 Â¡Â®.Â¡Â¯ 0.1 Â¡Â® Â¡Â¯ 1
 #L2dat.glmer2 is better, significant interaction effect between Verb.Type and Proficiency
 
 comparisons <- glht(L2dat.glmer2, linfct=mcp(Condition="Tukey"))
