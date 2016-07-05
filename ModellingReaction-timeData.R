@@ -305,49 +305,43 @@ summary(data.lmer3h)
 anova(data.lmer3h,data.lmer3f)
 #No interaction significant effect between Context and Antecedent.
 
-#the best model for 2 groups'Reaction-time is data.lmer3g, and at the 3rd Spillover Region:
+# the best model is data.lmer3f, 
 #Linear mixed model fit by maximum likelihood  ['lmerMod']
-#Formula: Spillover3.LogRT ~ (1 | Reading.baseline) + (1 | CSTSwhole) + Group + Verb.Type * Proficiency + Antecedent * Verb.Type
+#Formula: Spillover3.LogRT ~ (1 | Reading.baseline) + (1 | CSTSwhole) +      Group + Verb.Type * Proficiency
 #Data: data
 
 #AIC      BIC   logLik deviance df.resid 
-#5029.3   5113.7  -2501.7   5003.3     4847 
+#5025.5   5090.4  -2502.7   5005.5     4850 
 
 #Scaled residuals: 
 #  Min      1Q  Median      3Q     Max 
-#-4.4446 -0.5866 -0.0969  0.4177  6.9514 
+#-4.4320 -0.5852 -0.0951  0.4182  6.9639 
 
 #Random effects:
 #  Groups           Name        Variance Std.Dev.
-#CSTSwhole        (Intercept) 0.03283  0.1812  
-#Reading.baseline (Intercept) 0.03963  0.1991  
-#Residual                     0.15097  0.3885  
+#CSTSwhole        (Intercept) 0.03272  0.1809  
+#Reading.baseline (Intercept) 0.03974  0.1993  
+#Residual                     0.15104  0.3886  
 #Number of obs: 4860, groups:  CSTSwhole, 90; Reading.baseline, 54
 
 #Fixed effects:
-#                                 Estimate  Std. Error t value
-#(Intercept)                      6.707e+00  3.078e-01  21.793
-#Group2                          -2.947e-01  8.405e-02  -3.506
-#Verb.Typev1                     -3.998e-01  1.184e-01  -3.376
-#Verb.Typev2                     -7.610e-02  1.171e-01  -0.650
-#Proficiency                     -5.325e-03  3.669e-03  -1.451
-#AntecedentLong.dist              1.671e-02  2.620e-02   0.638
-#Verb.Typev1:Proficiency          3.891e-03  1.187e-03   3.279
-#Verb.Typev2:Proficiency          4.624e-04  1.209e-03   0.383
-#Verb.Typev1:AntecedentLong.dist -4.607e-02  3.633e-02  -1.268
-#Verb.Typev2:AntecedentLong.dist  1.166e-05  3.612e-02   0.000
+#                         Estimate  Std. Error t value
+#(Intercept)              6.711114   0.308102  21.782
+#Group2                  -0.293212   0.084141  -3.485
+#Verb.Typev1             -0.421482   0.116991  -3.603
+#Verb.Typev2             -0.080360   0.116991  -0.687
+#Proficiency             -0.005291   0.003671  -1.441
+#Verb.Typev1:Proficiency  0.003946   0.001174   3.360
+#Verb.Typev2:Proficiency  0.000553   0.001174   0.471
 
 #Correlation of Fixed Effects:
-#  (Intr) Group2 Vrb.T1 Vrb.T2 Prfcnc AntcL. V.T1:P V.T2:P V.T1:A
-#Group2       0.671                                                        
-#Verb.Typev1 -0.188 -0.001                                                 
-#Verb.Typev2 -0.190 -0.001  0.494                                          
-#Proficiency -0.985 -0.738  0.144  0.146                                   
-#AntcdntLng. -0.004 -0.001  0.007  0.010 -0.034                            
-#Vrb.Typv1:P  0.171  0.000 -0.903 -0.448 -0.162  0.108                     
-#Vrb.Typv2:P  0.170  0.004 -0.436 -0.891 -0.162  0.101  0.491              
-#Vrb.Ty1:AL.  0.005  0.004 -0.113 -0.007  0.022 -0.715 -0.008 -0.072       
-#Vrb.Ty2:AL. -0.006 -0.012 -0.005  0.026  0.033 -0.711 -0.077 -0.224  0.507
+#  (Intr) Group2 Vrb.T1 Vrb.T2 Prfcnc V.T1:P
+#Group2       0.671                                   
+#Verb.Typev1 -0.190  0.000                            
+#Verb.Typev2 -0.190  0.000  0.500                     
+#Proficiency -0.986 -0.738  0.145  0.145              
+#Vrb.Typv1:P  0.173  0.000 -0.909 -0.455 -0.160       
+#Vrb.Typv2:P  0.173  0.000 -0.455 -0.909 -0.160  0.500
 
 ## Separate 2 groups' Reaction-time data ##
 ################################################################
