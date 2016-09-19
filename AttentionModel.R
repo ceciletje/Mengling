@@ -64,22 +64,34 @@ str(attention)
 #$ CorrectAnswer  : int  1 2 1 1 1 1 2 2 2 1 ...
 #$ SlideTarget.ACC: int  1 1 1 1 1 1 1 1 1 1 ...
 #$ SlideTarget.RT : int  530 740 443 502 541 540 598 627 715 497 ...
+
 attention$Group <- as.factor(attention$Group)
 levels(attention$Group)
 #[1] "1" "2"
+levels(attention$Group) <- c('L2','Native')
+levels(attention$Group)
+#[1] "L2"     "Native"
+attention$Group <- relevel(attention$Group,'Native')
+levels(attention$Group)
+#[1] "Native" "L2" 
+
 attention$WarningType <- as.factor(attention$WarningType)
 attention$WarningType <- relevel(attention$WarningType,'no')
 levels(attention$WarningType)
 #[1] "no"     "center" "double" "down"   "up"
+
 attention$FlankerType <- as.factor(attention$FlankerType)
 levels(attention$FlankerType)
 #[1] "congruent"   "incongruent" "neutral"
+
 attention$TargetType <- as.factor(attention$TargetType)
 levels(attention$TargetType)
 #[1] "down" "up"
+
 attention$TargetDirection <- as.factor(attention$TargetDirection)
 levels(attention$TargetDirection)
 #[1] "left"  "right"
+
 attention$Trial <- as.factor(attention$Trial)
 levels(attention$Trial)
 #[1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"  "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "20" "21" "22"
@@ -89,9 +101,9 @@ levels(attention$Trial)
 #[89] "89" "90" "91" "92" "93" "94" "95" "96"
 
 ## CDC: add line here to save the attention.rda file
-save(attention, file='C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
+save(attention, file='C://Users//Linda//Desktop//Rdocument//data//AttentionData.rda')
 ## CDC: add line here to load the attention.rda file
-load('C://Users//Linda//Desktop//Rdocument//src//AttentionData.rda')
+load('C://Users//Linda//Desktop//Rdocument//data//AttentionData.rda')
 
 load("../data/AttentionData.rda")
 
@@ -373,12 +385,12 @@ coef(dat.surv3)
 
 ## plot for item random effect:
 # for model: dat.surv3 <- coxph(yy ~ WarningType + FlankerType + TargetType + Group*TargetDirection + frailty.gaussian(Trial, sparse=F),attention)
-items <- 1:97
-resp <- coef(dat.surv3)[-c(1:9)]
+items <- 1:96
+resp <- coef(dat.surv3)[-c(1:9),106]
 item.effect <- lm(resp ~ items)
 plot(items, resp, main="Random effect estimates", xlab="Item", ylab="Estimates", axes=F)
 axis(2)
-axis(1, at=1:97)
+axis(1, at=1:96)
 abline(item.effect,col=2, lty=3)
 summary(item.effect)
 #Call:
@@ -488,15 +500,15 @@ str(tmp1)
 #$ Subject             : Factor w/ 54 levels "L2.1","L2.10",..: 30 41 48 49 50 51 52 53 54 31 ...
 scores <- tmp1
 str(scores)
-save(scores, file='C://Users//Linda//Desktop//Rdocument//src//AttentionScores.rda')
+save(scores, file='C://Users//Linda//Desktop//Rdocument//data//AttentionScores.rda')
 
 ## CDC: you will need to check that participants are identified in
 ## exactly the same way in the scores dataframe and in the dataframe
 ## you want to merge them into.  Then use the following commands to
 ## perform the merge (where TargetDataFrame is the data to which you want to add the ANT scores, and NewDataFrame is the result of the merge, giving it temporarily a new name to check everything is ok before over-writing the original file):
 
-load('C://Users//Linda//Desktop//Rdocument//src//AttentionScores.rda')
-load('C://Users//Linda//Desktop//Rdocument//src//Exp1dat.rda')
+load('C://Users//Linda//Desktop//Rdocument//data//AttentionScores.rda')
+load('C://Users//Linda//Desktop//Rdocument//data//Exp1dat.rda')
 
 NewDataFrame <- merge(scores, dat, by = "Subject")
 
