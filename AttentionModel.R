@@ -194,26 +194,26 @@ anova(dat.surv1, dat.surv3)
 
 ##### So, the best model for attention data is model(dat.surv3) #####
 #Call:
-#  coxph(formula = yy ~ WarningType + FlankerType + TargetType +
-#          Group * TargetDirection + frailty.gaussian(Trial, sparse = F),
-#        data = attention)
+#coxph(formula = yy ~ WarningType + FlankerType + TargetType + 
+#    Group * TargetDirection + frailty.gaussian(Trial, sparse = F), 
+#    data = attention)
 
-#n= 15552, number of events= 15219
+#  n= 15552, number of events= 15219 
 
-#                            coef   se(coef)   se2    Chisq   DF    p
-#WarningTypecenter          0.17353 0.02300  0.02298  56.91  1.00 4.6e-14
-#WarningTypedouble          0.30702 0.02301  0.02299 178.06  1.00 0.0e+00
-#WarningTypedown            0.40121 0.02965  0.02963 183.06  1.00 0.0e+00
-#WarningTypeup              0.29785 0.02966  0.02964 100.82  1.00 0.0e+00
-#FlankerTypeincongruent    -0.36573 0.01997  0.01996 335.31  1.00 0.0e+00
-#FlankerTypeneutral         0.11332 0.01980  0.01978  32.77  1.00 1.0e-08
-#TargetTypeup               0.06552 0.01876  0.01874  12.20  1.00 4.8e-04
-#Group2                    -0.12505 0.02301  0.02299  29.55  1.00 5.5e-08
-#TargetDirectionright      -0.09082 0.02223  0.02220  16.70  1.00 4.4e-05
-#frailty.gaussian(Trial, s                            16.48 16.22 4.4e-01
-#Group2:TargetDirectionrig  0.08476 0.03256  0.03252   6.78  1.00 9.2e-03
+#                           coef    se(coef)  se2     Chisq   DF    p      
+#WarningTypecenter          0.173527 0.02300  0.02298  56.91  1.00 4.6e-14
+#WarningTypedouble          0.307022 0.02301  0.02299 178.06  1.00 0.0e+00
+#WarningTypedown            0.401209 0.02965  0.02963 183.06  1.00 0.0e+00
+#WarningTypeup              0.297848 0.02966  0.02964 100.82  1.00 0.0e+00
+#FlankerTypeincongruent    -0.365730 0.01997  0.01996 335.31  1.00 0.0e+00
+#FlankerTypeneutral         0.113320 0.01980  0.01978  32.77  1.00 1.0e-08
+#TargetTypeup               0.065524 0.01876  0.01874  12.20  1.00 4.8e-04
+#GroupL2                    0.125052 0.02301  0.02299  29.55  1.00 5.5e-08
+#TargetDirectionright      -0.006056 0.02379  0.02377   0.06  1.00 8.0e-01
+#frailty.gaussian(Trial, s                             16.48 16.22 4.4e-01
+#GroupL2:TargetDirectionri -0.084762 0.03256  0.03252   6.78  1.00 9.2e-03
 
-#exp(coef) exp(-coef) lower .95 upper .95
+#                           exp(coef) exp(-coef) lower .95 upper .95
 #WarningTypecenter            1.1895     0.8407    1.1371    1.2443
 #WarningTypedouble            1.3594     0.7356    1.2994    1.4221
 #WarningTypedown              1.4936     0.6695    1.4093    1.5830
@@ -221,8 +221,8 @@ anova(dat.surv1, dat.surv3)
 #FlankerTypeincongruent       0.6937     1.4416    0.6671    0.7214
 #FlankerTypeneutral           1.1200     0.8929    1.0774    1.1643
 #TargetTypeup                 1.0677     0.9366    1.0292    1.1077
-#Group2                       0.8825     1.1332    0.8435    0.9232
-#TargetDirectionright         0.9132     1.0951    0.8743    0.9538
+#GroupL2                      1.1332     0.8825    1.0832    1.1855
+#TargetDirectionright         0.9940     1.0061    0.9487    1.0414
 #gauss:1                      0.9694     1.0315    0.9096    1.0332
 #gauss:2                      1.0085     0.9916    0.9453    1.0759
 #gauss:3                      1.0324     0.9687    0.9671    1.1020
@@ -319,69 +319,69 @@ anova(dat.surv1, dat.surv3)
 #gauss:94                     1.0028     0.9972    0.9402    1.0695
 #gauss:95                     0.9928     1.0073    0.9310    1.0587
 #gauss:96                     0.9974     1.0026    0.9352    1.0637
-#Group2:TargetDirectionrig    1.0885     0.9187    1.0212    1.1602
+#GroupL2:TargetDirectionri    0.9187     1.0885    0.8619    0.9793
 
 #Iterations: 10 outer, 21 Newton-Raphson
-#Variance of random effect= 0.001302083
-#Degrees of freedom for terms=  4.0  2.0  1.0  1.0  1.0 16.2  1.0
+#     Variance of random effect= 0.001302083 
+#Degrees of freedom for terms=  4.0  2.0  1.0  1.0  1.0 16.2  1.0 
 #Concordance= 0.618  (se = 0.003 )
 #Likelihood ratio test= 1181  on 26.2 df,   p=0
 
 coef(dat.surv3)
-#WarningTypecenter           WarningTypedouble             WarningTypedown               WarningTypeup
-#1.735267e-01                3.070223e-01                4.012093e-01                2.978485e-01
-#FlankerTypeincongruent          FlankerTypeneutral                TargetTypeup                      Group2
-#-3.657301e-01                1.133203e-01                6.552417e-02               -1.250515e-01
-#TargetDirectionright                     gauss:1                     gauss:2                     gauss:3
-#-9.081771e-02               -3.103726e-02                8.457340e-03                3.184372e-02
-#gauss:4                     gauss:5                     gauss:6                     gauss:7
-#1.131212e-02               -1.457725e-03                2.978902e-02                7.020580e-03
-#gauss:8                     gauss:9                    gauss:10                    gauss:11
-#3.671485e-03                1.003361e-02                1.104308e-02               -8.371775e-05
-#gauss:12                    gauss:13                    gauss:14                    gauss:15
-#-1.833410e-04                1.615185e-03                9.028235e-03               -1.835371e-03
-#gauss:16                    gauss:17                    gauss:18                    gauss:19
-#2.341374e-02               -1.371377e-02               -1.686513e-02               -3.540576e-04
-#gauss:20                    gauss:21                    gauss:22                    gauss:23
-#1.533795e-02               -3.300091e-02                3.670668e-03               -9.417276e-03
-#gauss:24                    gauss:25                    gauss:26                    gauss:27
-#-2.408171e-02               -3.129791e-03               -3.902155e-03               -4.109821e-03
-#gauss:28                    gauss:29                    gauss:30                    gauss:31
-#-1.125712e-02                1.585512e-03               -2.132900e-02                5.585260e-03
-#gauss:32                    gauss:33                    gauss:34                    gauss:35
-#3.203261e-02                4.358139e-03               -1.548403e-02               -5.080368e-03
-#gauss:36                    gauss:37                    gauss:38                    gauss:39
-#-1.269320e-04               -5.742766e-04                5.598221e-03                9.010033e-03
-#gauss:40                    gauss:41                    gauss:42                    gauss:43
-#-1.022098e-02               -1.191140e-02                7.948046e-03                3.584191e-03
-#gauss:44                    gauss:45                    gauss:46                    gauss:47
-#-7.013263e-03                2.043176e-02               -2.059717e-03               -6.702456e-03
-#gauss:48                    gauss:49                    gauss:50                    gauss:51
-#-1.465944e-02                1.681878e-02               -7.649943e-03               -7.219527e-03
-#gauss:52                    gauss:53                    gauss:54                    gauss:55
-#1.347133e-03                8.570606e-04                1.274481e-02                1.723416e-02
-#gauss:56                    gauss:57                    gauss:58                    gauss:59
-#6.148062e-03               -2.713134e-02                1.367252e-02               -6.665302e-03
-#gauss:60                    gauss:61                    gauss:62                    gauss:63
-#-1.800093e-02               -1.919146e-02                4.695443e-03                2.002978e-03
-#gauss:64                    gauss:65                    gauss:66                    gauss:67
-#1.379736e-02                6.596813e-03                1.349939e-02                2.066533e-03
-#gauss:68                    gauss:69                    gauss:70                    gauss:71
-#2.015590e-02               -1.310198e-02                2.752654e-02                2.645736e-03
-#gauss:72                    gauss:73                    gauss:74                    gauss:75
-#6.436515e-03                4.906648e-03                5.874949e-03                1.752330e-02
-#gauss:76                    gauss:77                    gauss:78                    gauss:79
-#-5.846130e-04                3.255004e-03               -1.133218e-02               -1.176170e-02
-#gauss:80                    gauss:81                    gauss:82                    gauss:83
-#-1.660638e-02               -2.542187e-02               -1.945329e-02               -1.633145e-02
-#gauss:84                    gauss:85                    gauss:86                    gauss:87
-#-5.501535e-04               -1.691814e-02               -3.742000e-03                1.770269e-02
-#gauss:88                    gauss:89                    gauss:90                    gauss:91
-#-1.292827e-02                1.679528e-02               -6.750463e-03               -1.310343e-02
-#gauss:92                    gauss:93                    gauss:94                    gauss:95
-#3.511569e-03                1.692033e-02                2.783776e-03               -7.234551e-03
-#gauss:96                    Group2:TargetDirectionright
-#-2.619775e-03                8.476219e-02
+#           WarningTypecenter            WarningTypedouble              WarningTypedown                WarningTypeup 
+#                1.735267e-01                 3.070223e-01                 4.012093e-01                 2.978485e-01 
+#      FlankerTypeincongruent           FlankerTypeneutral                 TargetTypeup                      GroupL2 
+#               -3.657301e-01                 1.133203e-01                 6.552417e-02                 1.250515e-01 
+#        TargetDirectionright                      gauss:1                      gauss:2                      gauss:3 
+#               -6.055520e-03                -3.103726e-02                 8.457340e-03                 3.184372e-02 
+#                     gauss:4                      gauss:5                      gauss:6                      gauss:7 
+#                1.131212e-02                -1.457725e-03                 2.978902e-02                 7.020580e-03 
+#                     gauss:8                      gauss:9                     gauss:10                     gauss:11 
+#                3.671485e-03                 1.003361e-02                 1.104308e-02                -8.371775e-05 
+#                    gauss:12                     gauss:13                     gauss:14                     gauss:15 
+#               -1.833410e-04                 1.615185e-03                 9.028235e-03                -1.835371e-03 
+#                    gauss:16                     gauss:17                     gauss:18                     gauss:19 
+#                2.341374e-02                -1.371377e-02                -1.686513e-02                -3.540576e-04 
+#                    gauss:20                     gauss:21                     gauss:22                     gauss:23 
+#                1.533795e-02                -3.300091e-02                 3.670668e-03                -9.417276e-03 
+#                    gauss:24                     gauss:25                     gauss:26                     gauss:27 
+#               -2.408171e-02                -3.129791e-03                -3.902155e-03                -4.109821e-03 
+#                    gauss:28                     gauss:29                     gauss:30                     gauss:31 
+#               -1.125712e-02                 1.585512e-03                -2.132900e-02                 5.585260e-03 
+#                    gauss:32                     gauss:33                     gauss:34                     gauss:35 
+#                3.203261e-02                 4.358139e-03                -1.548403e-02                -5.080368e-03 
+#                    gauss:36                     gauss:37                     gauss:38                     gauss:39 
+#               -1.269320e-04                -5.742766e-04                 5.598221e-03                 9.010033e-03 
+#                    gauss:40                     gauss:41                     gauss:42                     gauss:43 
+#               -1.022098e-02                -1.191140e-02                 7.948046e-03                 3.584191e-03 
+#                    gauss:44                     gauss:45                     gauss:46                     gauss:47 
+#               -7.013263e-03                 2.043176e-02                -2.059717e-03                -6.702456e-03 
+#                    gauss:48                     gauss:49                     gauss:50                     gauss:51 
+#               -1.465944e-02                 1.681878e-02                -7.649943e-03                -7.219527e-03 
+#                    gauss:52                     gauss:53                     gauss:54                     gauss:55 
+#                1.347133e-03                 8.570606e-04                 1.274481e-02                 1.723416e-02 
+#                    gauss:56                     gauss:57                     gauss:58                     gauss:59 
+#                6.148062e-03                -2.713134e-02                 1.367252e-02                -6.665302e-03 
+#                    gauss:60                     gauss:61                     gauss:62                     gauss:63 
+#               -1.800093e-02                -1.919146e-02                 4.695443e-03                 2.002978e-03 
+#                    gauss:64                     gauss:65                     gauss:66                     gauss:67 
+#                1.379736e-02                 6.596813e-03                 1.349939e-02                 2.066533e-03 
+#                    gauss:68                     gauss:69                     gauss:70                     gauss:71 
+#                2.015590e-02                -1.310198e-02                 2.752654e-02                 2.645736e-03 
+#                    gauss:72                     gauss:73                     gauss:74                     gauss:75 
+#                6.436515e-03                 4.906648e-03                 5.874949e-03                 1.752330e-02 
+#                    gauss:76                     gauss:77                     gauss:78                     gauss:79 
+#               -5.846130e-04                 3.255004e-03                -1.133218e-02                -1.176170e-02 
+#                    gauss:80                     gauss:81                     gauss:82                     gauss:83 
+#               -1.660638e-02                -2.542187e-02                -1.945329e-02                -1.633145e-02 
+#                    gauss:84                     gauss:85                     gauss:86                     gauss:87 
+#               -5.501535e-04                -1.691814e-02                -3.742000e-03                 1.770269e-02 
+#                    gauss:88                     gauss:89                     gauss:90                     gauss:91 
+#               -1.292827e-02                 1.679528e-02                -6.750463e-03                -1.310343e-02 
+#                    gauss:92                     gauss:93                     gauss:94                     gauss:95 
+#                3.511569e-03                 1.692033e-02                 2.783776e-03                -7.234551e-03 
+#                    gauss:96 GroupL2:TargetDirectionright 
+#               -2.619775e-03                -8.476219e-02
 
 ## plot for item random effect:
 # for model: dat.surv3 <- coxph(yy ~ WarningType + FlankerType + TargetType + Group*TargetDirection + frailty.gaussian(Trial, sparse=F),attention)
@@ -394,21 +394,21 @@ axis(1, at=1:96)
 abline(item.effect,col=2, lty=3)
 summary(item.effect)
 #Call:
-#  lm(formula = resp ~ items)
+#lm(formula = resp ~ items)
 
 #Residuals:
-#  Min        1Q    Median        3Q       Max 
-#-0.033578 -0.010016 -0.000059  0.008082  0.083380 
+#      Min        1Q    Median        3Q       Max 
+#-0.034218 -0.010123  0.000677  0.007483  0.031302 
 
 #Coefficients:
-#             Estimate  Std. Error  t value Pr(>|t|)
-#(Intercept) 3.545e-04  3.316e-03   0.107    0.915
-#items       1.060e-05  5.876e-05   0.180    0.857
+#              Estimate Std. Error t value Pr(>|t|)
+#(Intercept)  2.146e-03  2.823e-03   0.760    0.449
+#items       -4.426e-05  5.053e-05  -0.876    0.383
 
-#Residual standard error: 0.0162 on 95 degrees of freedom
-#Multiple R-squared:  0.0003424,	Adjusted R-squared:  -0.01018 
-#F-statistic: 0.03254 on 1 and 95 DF,  p-value: 0.8572
-#No significant effect of Items.
+#Residual standard error: 0.01372 on 94 degrees of freedom
+#Multiple R-squared:  0.008093,	Adjusted R-squared:  -0.002459 
+#F-statistic: 0.767 on 1 and 94 DF,  p-value: 0.3834
+
 
 
 ## (CDC)
